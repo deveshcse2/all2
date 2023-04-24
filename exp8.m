@@ -1,0 +1,17 @@
+clc; close; clear;
+G = [1,1,0,0,1,0,1; 0,1,1,1,1,0,0;1,1,1,0,0,1,1];
+m = [0,0,0; 0,0,1; 0,1,0; 0,1,1; 1,0,0; 1,0,1; 1,1,0; 1,1,1];
+C = mod(m*G, 2);
+disp('The Complete code set C is:');
+disp(C);
+G(3,:)=mod(G(3,:)+G(1,:),2);
+G(2,:)=mod(G(2,:)+G(3,:),2);
+G(1,:)=mod(G(1,:)+G(2,:),2);
+disp('The generator matrix G is');
+disp(G);
+P=[G(:,4) G(:,5) G(:,6)];
+I = eye(6-3);
+H = [P' I];
+disp('The Syndrome Table S is:');
+S = eye(6)*H';
+disp(S);
